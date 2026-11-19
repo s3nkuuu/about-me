@@ -4,7 +4,7 @@
       If no file is found, the built-in chiptune plays instead.
    3) GALLERY: logos / photos per interest. Put files in images/<topic>/ - missing ones show a label. */
 const CHAR_GIFS = {}; // unused: dialogue boxes were removed
-const DEFAULT_TRACK = "audio/shop.mp3";
+const DEFAULT_TRACK = "audio/Shop.mp3";
 const TRACKS = { /* 0: "audio/ruins.mp3", 1: "audio/snowdin.mp3", 2: "audio/waterfall.mp3" */ };
 /* 4) WALKERS: characters that stand in the bottom corners with their own idle movement (your GIFs are still images,
       so they do not travel). Put your own sprite at the path below. Until the file exists, a small original pixel
