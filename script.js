@@ -115,8 +115,13 @@ function playTrack(path) {
   if (!path || (bgm && bgm._path === path)) return;
   if (bgm) bgm.pause();
   const a = new Audio(path); a._path = path; a.loop = true; a.volume = 0.5; a.muted = muted; bgm = a; synthOn = true;
-  a.addEventListener("error", () => { if (bgm === a) { bgm = null; synthOn = true; } });
-  a.play().then(() => { if (bgm === a) synthOn = false; }).catch(() => {});
+  a.addEventListener("error", () => {
+    console.warn("[audio] could not load", path, "- check the file name, capital letters and folder");
+    muteBtn.title = `Track not found: ${path} (playing built-in chiptune instead)`;
+    if (bgm === a) { bgm = null; synthOn = true; }
+  });
+  a.play().then(() => { if (bgm === a) { synthOn = false; muteBtn.title = `Playing: ${path}`; } })
+    .catch((e) => console.warn("[audio] play failed:", e.name, path));
 }
 function musicStep() {
   if (muted || !synthOn) return;
