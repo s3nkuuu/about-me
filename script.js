@@ -112,16 +112,29 @@ const BASS = [110, 110, 87.3, 87.3, 98, 98, 82.4, 82.4];
 const LEAD = [440, 0, 523, 0, 659, 523, 0, 440, 392, 0, 440, 0, 523, 440, 0, 392, 349, 0, 440, 0, 523, 0, 440, 349, 330, 0, 392, 0, 494, 392, 0, 330];
 let mstep = 0;
 function playTrack(path) {
-  if (!path || (bgm && bgm._path === path)) return;
+  if (!path || (bgm && bgm._base === path)) return;
   if (bgm) bgm.pause();
-  const a = new Audio(path); a._path = path; a.loop = true; a.volume = 0.5; a.muted = muted; bgm = a; synthOn = true;
-  a.addEventListener("error", () => {
-    console.warn("[audio] could not load", path, "- check the file name, capital letters and folder");
-    muteBtn.title = `Track not found: ${path} (playing built-in chiptune instead)`;
-    if (bgm === a) { bgm = null; synthOn = true; }
-  });
-  a.play().then(() => { if (bgm === a) { synthOn = false; muteBtn.title = `Playing: ${path}`; } })
-    .catch((e) => console.warn("[audio] play failed:", e.name, path));
+  // GitHub is case-sensitive, so also try the file name in lowercase / Capitalised form.
+  const file = path.split("/").pop(), dir = path.slice(0, path.length - file.length);
+  const variants = [...new Set([path, dir + file.toLowerCase(), dir + file[0].toUpperCase() + file.slice(1).toLowerCase()])];
+  tryTrack(path, variants, 0);
+}
+function tryTrack(base, variants, i) {
+  if (i >= variants.length) {
+    console.warn("[audio] could not load any of:", variants.join(", "));
+    muteBtn.title = `Track not found: ${base} (playing built-in chiptune instead)`;
+    bgm = null; synthOn = true; return;
+  }
+  const a = new Audio(variants[i]); a._base = base; a.loop = true; a.volume = 0.5; a.muted = muted; bgm = a; synthOn = true;
+  a.addEventListener("error", () => { if (bgm === a) { console.warn("[audio] failed:", variants[i]); tryTrack(base, variants, i + 1); } });
+  const go = () => a.play().then(() => { if (bgm === a) { synthOn = false; muteBtn.title = `Playing: ${variants[i]}`; } })
+    .catch((e) => {
+      console.warn("[audio] play blocked, retrying on your next click/key:", e.name);
+      const retry = () => { if (bgm === a) go(); };
+      document.addEventListener("pointerdown", retry, { once: true });
+      document.addEventListener("keydown", retry, { once: true });
+    });
+  go();
 }
 function musicStep() {
   if (muted || !synthOn) return;
