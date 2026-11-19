@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<title>About Me | Jhay-Em Calleja</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<div class="intro" id="intro" role="button" tabindex="0" aria-label="Start presentation">
+  <div class="intro-heart">♥</div>
+  <p class="intro-text" id="introText"></p>
+  <p class="intro-hint">[ PRESS ENTER OR CLICK - SOUND ON ]</p>
+</div>
+
+<main class="deck" id="deck" aria-label="About me presentation">
+  <header class="topbar">
+    <span class="brand"><b>♥</b> A LITTLE ABOUT ME</span>
+    <span class="topbar-right"><span id="loc">* RUINS</span><button class="icon-btn" id="mute" type="button" aria-label="Toggle sound">♪ ON</button><button class="icon-btn" id="full" type="button" aria-label="Toggle fullscreen">[ ]</button></span>
+  </header>
+  <div class="stage">
+    <section class="slide active" data-loc="* RUINS" aria-label="Introduction">
+      <div class="eyebrow">01 / INTRODUCTION</div>
+      <div class="two">
+        <div>
+          <p class="kicker">HELLO, I'M</p>
+          <h1>JHAY-EM<br><span>CALLEJA.</span></h1>
+          <p class="info"><b>♥</b> NOVEMBER 11, 2003</p>
+          <p class="info"><b>♥</b> SUCAT, PARAÑAQUE CITY</p>
+        </div>
+        <figure class="frame"><span class="ph">♥<small>images/profile.jpg</small></span><img src="images/profile.jpg" alt="Jhay-Em Calleja" onerror="this.remove()"></figure>
+      </div>
+    </section>
+    <section class="slide" data-loc="* SNOWDIN" aria-label="School">
+      <div class="eyebrow">02 / PERSONAL BACKGROUND</div>
+      <div class="two">
+        <div>
+          <h2>A LITTLE ABOUT<br><span>MYSELF.</span></h2>
+          <div class="card">
+            <span class="icon">▦</span>
+            <div>
+              <p class="label">MY SCHOOL</p>
+              <h3>Pamantasan ng Lungsod ng Muntinlupa</h3>
+              <p class="degree">Bachelor of Science in Information Technology</p>
+            </div>
+          </div>
+          <p class="body">A graduate with a background in Information Technology, always curious about how things work and interested in discovering something new.</p>
+        </div>
+        <figure class="frame"><span class="ph">▦<small>images/school.jpg</small></span><img src="images/school.jpg" alt="School or graduation photo" onerror="this.remove()"></figure>
+      </div>
+    </section>
+    <section class="slide" data-loc="* WATERFALL" aria-label="THINGS I ENJOY: GAMING">
+      <div class="eyebrow">03 / MY INTERESTS: GAMING</div>
+      <div class="two">
+        <div>
+          <svg class="pix" data-icon="game" aria-hidden="true"></svg>
+          <h2>THINGS I<br><span>ENJOY: GAMING</span></h2>
+          <div class="gallery" data-gallery="gaming"></div>
+        </div>
+        <figure class="frame"><span class="ph">♥<small>images/gaming.png</small></span><img src="images/gaming.png" alt="Gaming" onerror="this.remove()"></figure>
+      </div>
+    </section>
+    <section class="slide" data-loc="* TRUE LAB" aria-label="Reading">
+      <div class="eyebrow">04 / MY INTERESTS: READING</div>
+      <div class="two reading">
+        <div>
+          <svg class="pix" data-icon="book" aria-hidden="true"></svg>
+          <h2>I LOVE<br><span>READING.</span></h2>
+          <p class="body">Manga, manhwa, comics, and books about self-development, psychology, and human behavior.</p>
+        </div>
+        <div class="collage scatter" data-gallery="reading"></div>
+      </div>
+    </section>
+    <section class="slide" data-loc="* CORE" aria-label="Watching">
+      <div class="eyebrow">05 / MY INTERESTS: WATCHING</div>
+      <div class="head">
+        <svg class="pix" data-icon="tv" aria-hidden="true"></svg>
+        <div>
+          <h2>I LOVE <span>WATCHING.</span></h2>
+          <p class="body">Anime, movies, series, and anything Marvel-related.</p>
+        </div>
+      </div>
+      <div class="collage fan" data-gallery="watching"></div>
+    </section>
+    <section class="slide" data-loc="* HOTLAND" aria-label="Photography">
+      <div class="eyebrow">06 / MY INTERESTS: PHOTOGRAPHY</div>
+      <div class="view">
+        <div class="head">
+          <svg class="pix" data-icon="camera" aria-hidden="true"></svg>
+          <div>
+            <h2>I LOVE <span>PHOTOGRAPHY.</span></h2>
+            <p class="body">Street photography, cats, portraits, and moments with someone special. Also a pet lover who captures random moments.</p>
+          </div>
+        </div>
+        <div class="collage wall" data-gallery="photography"></div>
+        <p class="zoomhint">PRESS NEXT TO VIEW PHOTOS ONE BY ONE <i>▶</i></p>
+      </div>
+      <!-- Photo viewer: each Next shows the next photo zooming out, shown in full -->
+      <div class="full" data-full="photography" aria-label="All photos in full"></div>
+    </section>
+    <section class="slide" data-loc="* NEW HOME" aria-label="My business: Momento">
+      <div class="eyebrow">07 / MY BUSINESS</div>
+      <div class="two biz">
+        <div>
+          <p class="kicker">MAZE PHOTOGRAPHY PRESENTS</p>
+          <h2><span>MOMENTO</span></h2>
+          <p class="define"><b>(n.)</b> /mo·mén·to/ A memory you can hold.</p>
+          <p class="body">Planning a birthday, debut, wedding, baptism, or corporate event? Event photo coverage plus instant printouts your guests can take home.</p>
+          <ul class="svc">
+            <li>Event &amp; Party Photography</li>
+            <li>Baptism / Christening Coverage</li>
+            <li>Portrait &amp; Prenup / Couple Sessions</li>
+            <li>Conventions &amp; Commercial Events</li>
+            <li>Street &amp; Milestone Photography</li>
+            <li>Instant Photobooth &amp; Roving Photoman</li>
+          </ul>
+          <p class="cta"><i>★</i> BOOK YOUR DATE TODAY! Weekend slots fill up fast.</p>
+          <div class="contacts">
+            <div class="ct"><b>FACEBOOK PAGE</b><span>Maze Photography | Momento</span></div>
+            <div class="ct"><b>PERSONAL PROFILE</b><span>Maze Clarion Badlon</span></div>
+            <div class="ct"><b>EMAIL</b><span><a href="mailto:mcbadlon4@gmail.com">mcbadlon4@gmail.com</a></span></div>
+            <div class="ct"><b>CONTACT NUMBERS</b><span><a href="tel:+639306761193">0930 676 1193</a> (TNT)<br><a href="tel:+639945213329">0994 521 3329</a> (DITO)</span></div>
+          </div>
+          <p class="powered">POWERED BY NIKON · SONY · DSLRBOOTH · LIGHTROOM CLASSIC · PHOTOSHOP · CANVA</p>
+        </div>
+        <!-- Logo + QR: images/momento.png -->
+        <figure class="frame"><span class="ph">MO<small>images/momento.png</small></span><img src="images/momento.png" alt="Momento logo and QR code" onerror="this.remove()"></figure>
+      </div>
+    </section>
+    <section class="slide closing" data-loc="* THE END" aria-label="Thank you">
+      <div class="eyebrow">08 / THE END</div>
+      <div class="save-star">★</div>
+      <p class="kicker">THAT'S A LITTLE ABOUT ME.</p>
+      <h2>THANK <span>YOU!</span></h2>
+      <p class="quote">"just a person trying to make life more interesting in every way possible"</p>
+      <p class="body">Thanks for getting to know me.</p>
+    </section>
+  </div>
+  <footer class="controls">
+    <div class="progress"><div class="track"><div class="fill" id="fill"></div></div><span id="counter">01 / 08</span></div>
+    <div class="nav">
+      <button class="btn" id="prev" type="button" aria-label="Previous slide"><i>♥</i> BACK</button>
+      <span class="hint">← → KEYS · M = MUTE · F = FULLSCREEN</span>
+      <button class="btn" id="next" type="button" aria-label="Next slide"><i>♥</i> NEXT</button>
+    </div>
+  </footer>
+</main>
+<button class="cat" id="cat" type="button" aria-label="Pixel cat (click me)"></button>
+<script src="script.js"></script>
+</body>
+</html>
